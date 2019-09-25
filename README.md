@@ -1,5 +1,7 @@
 # Project Quiant
 
+**TODO: Add more thorough application description**
+
 Location based memo/todo app. User can make memos that are only relevant in a specific location e.g. door code to your friend's place or grociery list, etc.
 
 ### Quick links
@@ -30,6 +32,8 @@ EXTRA
 * WorkManager/Worker
 
 ## UI and UX design
+
+**TODO: Explain UI/UX goals and design descisions**
 
 App design sketches and prototype can be found in Figma.
 
