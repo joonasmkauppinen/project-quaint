@@ -12,7 +12,7 @@ Location based memo/todo app. User can make memos that are only relevant in a sp
 * Persistence (Room and/or File and/or SharedPreferences)
 * Clean code (private, val, correct indent, no lint warnings, packages,...)
 
-EXTRA
+    EXTRA
 * 3 out of 4 basic components
 * Connection to some web service
 * Have AR related functionality
