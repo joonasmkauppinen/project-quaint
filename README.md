@@ -1,2 +1,2 @@
-# TODO: Update with project name
+# Project Quiant
 Readme here
