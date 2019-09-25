@@ -2,7 +2,7 @@
 
 Location based memo/todo app. User can make memos that are only relevant in a specific location e.g. door code to your friend's place or grociery list, etc.
 
-## Quick links
+### Quick links
 1. [Project board](https://github.com/joonasmkauppinen/project-quaint/projects/1)
 2. [Sprints progress](https://github.com/joonasmkauppinen/project-quaint/milestones?direction=asc&sort=due_date&state=open)
 3. [Full "backlog"](https://github.com/joonasmkauppinen/project-quaint/issues?utf8=%E2%9C%93&q=is%3Aissue)
