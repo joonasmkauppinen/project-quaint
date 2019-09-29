@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "296076921827",
+    "firebase_url": "https://project-quaint.firebaseio.com",
+    "project_id": "project-quaint",
+    "storage_bucket": "project-quaint.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296076921827:android:b8ec59d35a60032d556ed6",
+        "android_client_info": {
+          "package_name": "com.newgat.quaint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296076921827-rh0htjkk607dmmpe9ip3thmoc2cnp68g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newgat.quaint",
+            "certificate_hash": "660323c5e7a28a9abb69d34cb6af655afd17f929"
+          }
+        },
+        {
+          "client_id": "296076921827-ofuf11llmjqnl18sr9s02r8segonn9s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCbgmAgFZn8D4edEORRBrk7njvJn-YnCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296076921827-ofuf11llmjqnl18sr9s02r8segonn9s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
