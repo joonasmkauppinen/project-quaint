@@ -12,3 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+.idea/dictionaries/Joonas.xml
+app/src/debug/res/values/secrets.xml
