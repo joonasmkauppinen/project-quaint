@@ -20,4 +20,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/testGeofence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="geoFenceTest"
+        android:stateListAnimator="@null"
+        android:text="add geofence"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59000003" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
