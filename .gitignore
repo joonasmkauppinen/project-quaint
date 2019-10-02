@@ -16,3 +16,4 @@
 app/src/debug/res/values/secrets.xml
 .project
 .idea/misc.xml
+app/google-services.json
