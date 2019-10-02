@@ -1,25 +1,17 @@
-package com.newgat.quaint
+package com.newgat.quaint.ui
 
 import android.Manifest
-import android.app.ActivityManager
 import android.content.pm.PackageManager
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.newgat.quaint.R
 
-class MainActivity : AppCompatActivity(), MapFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(),
+    MapFragment.OnFragmentInteractionListener {
 
     companion object {
         const val APP_PERMISSIONS_ACCESS_FINE_LOCATION = 1
@@ -33,7 +25,8 @@ class MainActivity : AppCompatActivity(), MapFragment.OnFragmentInteractionListe
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                APP_PERMISSIONS_ACCESS_FINE_LOCATION)
+                APP_PERMISSIONS_ACCESS_FINE_LOCATION
+            )
         }
     }
 
@@ -41,7 +34,9 @@ class MainActivity : AppCompatActivity(), MapFragment.OnFragmentInteractionListe
         supportFragmentManager.beginTransaction()
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(null)
-            .add(R.id.rootLayout, MapFragment.newInstance(), "MAP_FRAGMENT")
+            .add(
+                R.id.rootLayout,
+                MapFragment.newInstance(), "MAP_FRAGMENT")
             .commit()
     }
 
