@@ -1,4 +1,4 @@
-package com.newgat.quaint.ui
+package com.newgat.quaint.ui.activity
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.newgat.quaint.R
+import com.newgat.quaint.ui.fragment.map.MapFragment
 
 class MainActivity : AppCompatActivity(),
     MapFragment.OnFragmentInteractionListener {
