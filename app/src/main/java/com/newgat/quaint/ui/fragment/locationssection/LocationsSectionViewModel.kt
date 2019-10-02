@@ -11,4 +11,7 @@ class LocationsSectionViewModel(
     val locations by lazyDeferred {
         quaintRepository.getLocationsList()
     }
+    fun saveLocation(location: LocationEntry) {
+        quaintRepository.insertLocation(location)
+    }
 }

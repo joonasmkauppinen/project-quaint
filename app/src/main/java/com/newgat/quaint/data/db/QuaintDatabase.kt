@@ -10,13 +10,13 @@ import com.newgat.quaint.data.db.entity.LocationEntry
     entities = [LocationEntry::class],
     version = 1
 )
-abstract class QuaintDatabse : RoomDatabase() {
+abstract class QuaintDatabase : RoomDatabase() {
     abstract fun locationsDao(): LocationsDao
 
     // Create database singleton
     companion object {
         // @Volatile inorder for all threads to have immediate access to property
-        @Volatile private var instance: QuaintDatabse? = null
+        @Volatile private var instance: QuaintDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -25,7 +25,7 @@ abstract class QuaintDatabse : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
-                QuaintDatabse::class.java, "quaint.db")
+                QuaintDatabase::class.java, "quaint.db")
                 .build()
     }
 }

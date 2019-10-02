@@ -1,7 +1,7 @@
 package com.newgat.quaint
 
 import android.app.Application
-import com.newgat.quaint.data.db.QuaintDatabse
+import com.newgat.quaint.data.db.QuaintDatabase
 import com.newgat.quaint.data.repository.QuaintRepository
 import com.newgat.quaint.data.repository.QuaintRepositoryImpl
 import com.newgat.quaint.ui.fragment.locationssection.LocationsSectionViewModelFactory
@@ -17,8 +17,8 @@ class QuaintApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@QuaintApplication))
 
-        bind() from singleton { QuaintDatabse(instance()) }
-        bind() from singleton { instance<QuaintDatabse>().locationsDao() }
+        bind() from singleton { QuaintDatabase(instance()) }
+        bind() from singleton { instance<QuaintDatabase>().locationsDao() }
         bind<QuaintRepository>() with singleton { QuaintRepositoryImpl(instance()) }
         bind() from provider { LocationsSectionViewModelFactory(instance()) }
     }

@@ -5,4 +5,5 @@ import com.newgat.quaint.data.db.entity.LocationEntry
 
 interface QuaintRepository {
     suspend fun getLocationsList(): LiveData<List<LocationEntry>>
+    fun insertLocation(location: LocationEntry)
 }

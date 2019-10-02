@@ -10,7 +10,7 @@ import com.newgat.quaint.data.db.entity.LocationEntry
 @Dao
 interface LocationsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(locationEntry: LocationEntry)
+    fun insert(locationEntry: LocationEntry)
 
     @Query("select * from locations")
     fun getAllLocations(): LiveData<List<LocationEntry>>

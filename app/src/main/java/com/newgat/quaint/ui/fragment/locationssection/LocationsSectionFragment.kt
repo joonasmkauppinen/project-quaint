@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
+import com.newgat.quaint.data.db.entity.LocationEntry
 import com.newgat.quaint.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.locations_section_fragment.*
 import kotlinx.coroutines.launch
@@ -40,12 +41,22 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
         val locations = viewModel.locations.await()
         locations.observe(this@LocationsSectionFragment, Observer {
             if (it.isEmpty()) {
-                textView.text = "No Locations added"
+                locationsTv.text = "No Locations added"
                 return@Observer
             } else {
-                textView.text = it.toString()
+                locationsTv.text = it.toString()
             }
         })
+        addLocationBtn.setOnClickListener {
+            val locationName = nameEt.text.toString()
+            val locationDesc = descriptoinEt.text.toString()
+            val newLocation = LocationEntry(null, locationName, locationDesc)
+            onAddLocation(newLocation)
+        }
+    }
+
+    private fun onAddLocation(newLocation: LocationEntry) = launch {
+            viewModel.saveLocation(newLocation)
     }
 
 }
