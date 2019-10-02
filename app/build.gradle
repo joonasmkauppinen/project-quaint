@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "kotlin-kapt"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -14,6 +16,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+                arg("room.incremental", "true")
+                arg("room.expandProjection", "true")
+            }
+        }
     }
     buildTypes {
         release {
@@ -38,6 +47,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // Kotlin Android Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0-RC1"
+
     // Google Maps SDK
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
@@ -46,6 +59,21 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.1.1'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
+
+    // Room
+    kapt "androidx.room:room-compiler:2.2.0-rc01"
+    implementation "androidx.room:room-runtime:2.2.0-rc01"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+
+    // ViewModel and LiveData
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt "androidx.lifecycle:lifecycle-compiler:2.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+
+    // Kodein
+    implementation "org.kodein.di:kodein-di-generic-jvm:5.2.0"
+    implementation "org.kodein.di:kodein-di-framework-android-x:5.2.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

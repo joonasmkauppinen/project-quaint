@@ -1,9 +1,8 @@
-package com.newgat.quaint
+package com.newgat.quaint.ui.fragment.map
 
 import android.content.Context
 import android.content.res.Resources
 import android.location.Location
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,6 +16,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import com.newgat.quaint.R
 import kotlinx.android.synthetic.main.fragment_map.view.*
 
 
@@ -50,7 +50,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, View.OnClickListener {
             val currentLocation = LatLng(location.latitude, location.longitude)
             try {
                  val success = map.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(context, R.raw.maps_style_json)
+                    MapStyleOptions.loadRawResourceStyle(context,
+                        R.raw.maps_style_json
+                    )
                  )
                 if (!success) Log.d(TAG, "Style parsing failed.")
             } catch (e: Resources.NotFoundException) {
