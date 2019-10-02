@@ -9,10 +9,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.newgat.quaint.R
+import com.newgat.quaint.ui.fragment.locationssection.LocationsSectionFragment
 import com.newgat.quaint.ui.fragment.map.MapFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),
-    MapFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         const val APP_PERMISSIONS_ACCESS_FINE_LOCATION = 1
@@ -21,6 +22,12 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.rootLayout, LocationsSectionFragment())
+                .commitNow()
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -31,17 +38,4 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    fun showMap(v: View) {
-        supportFragmentManager.beginTransaction()
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(null)
-            .add(
-                R.id.rootLayout,
-                MapFragment.newInstance(), "MAP_FRAGMENT")
-            .commit()
-    }
-
-    override fun onFragmentInteraction() {
-        onBackPressed()
-    }
 }
