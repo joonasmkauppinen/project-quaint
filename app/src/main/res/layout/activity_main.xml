@@ -8,15 +8,14 @@
     android:background="@color/colorBlack"
     tools:context=".ui.activity.MainActivity">
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+    <Button
+        android:id="@+id/addNewButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_margin="32dp"
-        android:clickable="true"
-        android:backgroundTint="@color/colorWhite"
-        android:src="@drawable/main_plus_vector"
-        app:fabCustomSize="70dp" />
+        android:background="@drawable/fab_background"
+        android:layout_gravity="bottom|end"
+        android:stateListAnimator="@null"
+        />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
