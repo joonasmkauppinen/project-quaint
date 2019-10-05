@@ -9,7 +9,7 @@
     tools:context=".ui.activity.MainActivity">
 
     <Button
-        android:id="@+id/addNewButton"
+        android:id="@+id/openBottomSheetButton"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_margin="32dp"
