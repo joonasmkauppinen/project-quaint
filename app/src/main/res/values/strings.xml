@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Quaint</string>
     <string name="title_activity_maps">Map</string>
+    <string name="location_title">LOCATION</string>
+    <string name="note_title">NOTE</string>
+    <string name="create_new_title">Create New</string>
 </resources>
