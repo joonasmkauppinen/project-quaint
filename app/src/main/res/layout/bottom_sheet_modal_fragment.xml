@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_modal_background"
+    tools:context=".ui.fragment.bottomsheetmodal.BottomSheetModalFragment">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/draggable_pill_background" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center"
+        android:paddingStart="@dimen/screen_margin"
+        android:fontFamily="@font/pier_sans"
+        android:textFontWeight="500"
+        android:text="@string/create_new_title"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/ripple_effect">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_pen"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center"
+            android:text="@string/note_title"
+            android:fontFamily="@font/pier_sans"
+            android:textFontWeight="600"
+            android:textSize="14sp"
+            android:textColor="@color/colorGray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/ripple_effect">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_location_pin"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center"
+            android:text="@string/location_title"
+            android:fontFamily="@font/pier_sans"
+            android:textFontWeight="600"
+            android:textSize="14sp"
+            android:textColor="@color/colorGray"/>
+    </LinearLayout>
+
+</LinearLayout>
