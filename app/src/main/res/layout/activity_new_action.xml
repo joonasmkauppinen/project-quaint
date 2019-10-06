@@ -7,6 +7,7 @@
     tools:context=".ui.activity.NewActionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@drawable/list_item_background_bottom_stroke"
@@ -22,9 +23,9 @@
             android:clickable="true"
             android:contentDescription="@string/description_close_view"
             android:focusable="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_close"
             android:onClick="onCloseClicked"
+            android:scaleType="center"
+            android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,13 +50,23 @@
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/save_button_background"
+            android:fontFamily="@font/pier_sans_bold"
             android:text="@string/button_save"
             android:textSize="11sp"
-            android:fontFamily="@font/pier_sans_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SmallSp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/actionFormRoot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

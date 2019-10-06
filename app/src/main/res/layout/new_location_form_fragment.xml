@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.location.NewLocationForm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:background="@drawable/list_item_background_bottom_stroke">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_name_tag"
+            android:tint="@color/colorFormFieldIcon"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="textCapSentences"
+            android:hint="@string/input_hint_name"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorInputHint"
+            android:fontFamily="@font/pier_sans_regular"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:background="@drawable/list_item_background_bottom_stroke">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_location_pin"
+            android:tint="@color/colorFormFieldIcon"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="textCapSentences"
+            android:hint="@string/input_hint_address"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorInputHint"
+            android:fontFamily="@font/pier_sans_regular"/>
+    </LinearLayout>
+
+</LinearLayout>

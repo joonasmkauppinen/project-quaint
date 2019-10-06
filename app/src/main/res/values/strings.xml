@@ -8,4 +8,6 @@
     <string name="create_new_title">Create New</string>
     <string name="description_close_view">Close view</string>
     <string name="button_save">save</string>
+    <string name="input_hint_name">Name</string>
+    <string name="input_hint_address">Address</string>
 </resources>
