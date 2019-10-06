@@ -1,6 +1,7 @@
 package com.newgat.quaint.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +10,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.newgat.quaint.R
+import com.newgat.quaint.internal.ActionType
 import com.newgat.quaint.ui.fragment.bottomsheetmodal.BottomSheetModalFragment
 import com.newgat.quaint.ui.fragment.locationssection.LocationsSectionFragment
 import com.newgat.quaint.ui.fragment.map.MapFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+const val EXTRA_ACTION_TYPE = "com.newgat.quaint.ACTION_TYPE"
+
+class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModalFragment.BottomSheetListener {
 
     companion object {
         const val APP_PERMISSIONS_ACCESS_FINE_LOCATION = 1
@@ -44,5 +48,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         BottomSheetModalFragment().show(supportFragmentManager, "MainBottomSheetModal")
+    }
+
+    override fun onActionClicked(action: ActionType) {
+        val intent = Intent(this, NewActionActivity::class.java).apply {
+            putExtra(EXTRA_ACTION_TYPE, action)
+        }
+        startActivity(intent)
+
     }
 }
