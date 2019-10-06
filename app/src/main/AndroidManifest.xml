@@ -31,7 +31,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.NewDocumentActivity"></activity>
+
+        <activity
+            android:name=".ui.activity.NewActionActivity"
+            android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>
