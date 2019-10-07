@@ -24,6 +24,9 @@ android {
             }
         }
     }
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -49,6 +52,9 @@ dependencies {
 
     // Material components
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    // Anko
+    implementation "org.jetbrains.anko:anko:0.10.8"
 
     // Kotlin Android Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
