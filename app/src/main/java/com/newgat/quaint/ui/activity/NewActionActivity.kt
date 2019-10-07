@@ -9,7 +9,7 @@ import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchFragment
 import com.newgat.quaint.ui.fragment.location.NewLocationForm
 import kotlinx.android.synthetic.main.activity_new_action.*
 
-class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormListener, AddressSearchFragment.AddressSearchListener {
+class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,8 @@ class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormLi
         val action = intent.getSerializableExtra(EXTRA_ACTION_TYPE) as ActionType
         setToolbarTitle(action)
         setActionForm(action)
+
+
     }
 
     private fun setToolbarTitle(action: ActionType) {
@@ -38,7 +40,7 @@ class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormLi
         }
     }
 
-    fun onCloseClicked(v: View) {
+    fun onClosePressed(v: View) {
         onBackPressed()
     }
 
@@ -48,9 +50,5 @@ class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormLi
             .add(R.id.newActionRoot, AddressSearchFragment())
             .addToBackStack(null)
             .commit()
-    }
-
-    override fun closeAddressSearch() {
-        onBackPressed()
     }
 }

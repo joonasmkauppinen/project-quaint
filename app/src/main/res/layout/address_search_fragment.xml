@@ -1,74 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBlack"
-    tools:context=".ui.fragment.addresssearch.AddressSearchFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.newgat.quaint.ui.fragment.addresssearch.AddressSearchViewModel"/>
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/list_item_background_bottom_stroke"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context=".ui.fragment.addresssearch.AddressSearchFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/closeAddressSearch"
-            android:layout_width="78dp"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/list_item_background_bottom_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:contentDescription="@string/description_close_view"
-                android:src="@drawable/ic_back_arrow"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/closeAddressSearch"
+                android:layout_width="78dp"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onClosePressed"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="@string/description_close_view"
+                    android:src="@drawable/ic_back_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/addressInputEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_background"
+                android:fontFamily="@font/pier_sans_regular"
+                android:hint="@string/input_hint_enter_address"
+                android:text="@{viewModel.currentAddressContent}"
+                android:inputType="textCapSentences"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorInputHint"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/saveActionButton"
+                app:layout_constraintStart_toEndOf="@+id/closeAddressSearch"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/saveActionButton"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_background"
+                android:fontFamily="@font/pier_sans_bold"
+                android:stateListAnimator="@null"
+                android:text="@string/button_clear"
+                android:textColor="@color/colorWhite"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SmallSp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/addressInputEditText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="textCapSentences"
-            android:hint="@string/input_hint_enter_address"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="@font/pier_sans_regular"
-            android:textSize="19sp"
-            android:textColorHint="@color/colorInputHint"
-            android:background="@drawable/input_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/saveActionButton"
-            app:layout_constraintStart_toEndOf="@+id/closeAddressSearch"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/saveActionButton"
-            android:layout_width="78dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/input_background"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="@font/pier_sans_bold"
-            android:text="@string/button_clear"
-            android:textSize="10sp"
-            android:stateListAnimator="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SmallSp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

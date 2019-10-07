@@ -1,6 +1,7 @@
 package com.newgat.quaint.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
 import com.newgat.quaint.data.db.entity.LocationEntry
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +12,19 @@ import kotlinx.coroutines.withContext
 class QuaintRepositoryImpl(
     private val locationsDao: LocationsDao
 ) : QuaintRepository {
+
+    private val _currentPlaceNameInput = MutableLiveData<String>()
+    override val currentPlaceNameInput: LiveData<String>
+        get() = _currentPlaceNameInput
+
+    init {
+        _currentPlaceNameInput.value = ""
+    }
+
+    override fun setCurrentPlaceName(name: String) {
+        _currentPlaceNameInput.value = name
+    }
+
     override suspend fun getLocationsList(): LiveData<List<LocationEntry>> {
         return withContext(Dispatchers.IO) {
             return@withContext locationsDao.getAllLocations()

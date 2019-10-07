@@ -24,7 +24,7 @@
             android:clickable="true"
             android:contentDescription="@string/description_close_view"
             android:focusable="true"
-            android:onClick="onCloseClicked"
+            android:onClick="onClosePressed"
             android:scaleType="center"
             android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"

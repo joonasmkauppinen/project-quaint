@@ -6,12 +6,12 @@ import com.newgat.quaint.data.repository.QuaintRepository
 import com.newgat.quaint.internal.lazyDeferred
 
 class LocationsSectionViewModel(
-    private val quaintRepository: QuaintRepository
+    private val repository: QuaintRepository
 ) : ViewModel() {
     val locations by lazyDeferred {
-        quaintRepository.getLocationsList()
+        repository.getLocationsList()
     }
     fun saveLocation(location: LocationEntry) {
-        quaintRepository.insertLocation(location)
+        repository.insertLocation(location)
     }
 }

@@ -1,48 +1,59 @@
 package com.newgat.quaint.ui.fragment.addresssearch
 
-import android.app.Activity
-import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
+import androidx.databinding.DataBindingUtil
 import com.newgat.quaint.R
+import com.newgat.quaint.databinding.AddressSearchFragmentBinding
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class AddressSearchFragment : Fragment() {
+class AddressSearchFragment : Fragment(), KodeinAware {
 
-    private lateinit var listener: AddressSearchListener
+    override val kodein by closestKodein()
+    private val viewModelFactory: AddressSearchViewModelFactory by instance()
+
+    private lateinit var binding: AddressSearchFragmentBinding
     private lateinit var viewModel: AddressSearchViewModel
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            listener = context as AddressSearchListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement AddressSearchListener")
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.address_search_fragment, container, false)
-        view.closeAddressSearch.setOnClickListener{ listener.closeAddressSearch() }
-        return view
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.address_search_fragment,
+            container,
+            false
+        )
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(AddressSearchViewModel::class.java)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        return binding.root
+//        return inflater.inflate(R.layout.address_search_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AddressSearchViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//
+//
+//
+//    }
 
-    interface AddressSearchListener {
-        fun closeAddressSearch()
+    fun onClosePressed(v: View) {
+        activity?.onBackPressed()
     }
 
 }
