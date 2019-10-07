@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.View
 import com.newgat.quaint.R
 import com.newgat.quaint.internal.ActionType
+import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchFragment
 import com.newgat.quaint.ui.fragment.location.NewLocationForm
 import kotlinx.android.synthetic.main.activity_new_action.*
 
-class NewActionActivity : AppCompatActivity() {
+class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormListener, AddressSearchFragment.AddressSearchListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,18 @@ class NewActionActivity : AppCompatActivity() {
     }
 
     fun onCloseClicked(v: View) {
+        onBackPressed()
+    }
+
+    override fun openAddressSearch() {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_bottom_enter, R.anim.slide_bottom_exit, R.anim.slide_bottom_enter, R.anim.slide_bottom_exit)
+            .add(R.id.newActionRoot, AddressSearchFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun closeAddressSearch() {
         onBackPressed()
     }
 }

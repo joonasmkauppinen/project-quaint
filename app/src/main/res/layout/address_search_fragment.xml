@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBlack"
     tools:context=".ui.fragment.addresssearch.AddressSearchFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +63,7 @@
             android:textColor="@color/colorWhite"
             android:fontFamily="@font/pier_sans_bold"
             android:text="@string/button_clear"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:stateListAnimator="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
