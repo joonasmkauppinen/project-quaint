@@ -10,4 +10,6 @@
     <string name="button_save">save</string>
     <string name="input_hint_name">Name</string>
     <string name="input_hint_address">Address</string>
+    <string name="button_clear">clear</string>
+    <string name="input_hint_enter_address">Enter address</string>
 </resources>

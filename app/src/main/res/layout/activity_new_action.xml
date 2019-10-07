@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/actionTitleTextView"
+            android:id="@+id/addressInputEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pier_sans_medium"

@@ -24,7 +24,7 @@ class NewActionActivity : AppCompatActivity() {
             ActionType.NOTE -> getString(R.string.new_note_title)
             ActionType.LOCATION -> getString(R.string.new_location_title)
         }
-        actionTitleTextView.text = title
+        addressInputEditText.text = title
     }
 
     private fun setActionForm(action: ActionType) {
