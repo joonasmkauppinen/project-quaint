@@ -18,8 +18,6 @@ class NewActionActivity : AppCompatActivity(), NewLocationForm.NewLocationFormLi
         val action = intent.getSerializableExtra(EXTRA_ACTION_TYPE) as ActionType
         setToolbarTitle(action)
         setActionForm(action)
-
-
     }
 
     private fun setToolbarTitle(action: ActionType) {

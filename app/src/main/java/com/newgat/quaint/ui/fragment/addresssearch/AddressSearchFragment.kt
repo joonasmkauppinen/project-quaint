@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.newgat.quaint.R
 import com.newgat.quaint.databinding.AddressSearchFragmentBinding
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
+import org.jetbrains.anko.support.v4.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -40,20 +42,13 @@ class AddressSearchFragment : Fragment(), KodeinAware {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
+        binding.addressInputEditText.doAfterTextChanged { viewModel.onEditTextChange() }
         return binding.root
-//        return inflater.inflate(R.layout.address_search_fragment, container, false)
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//
-//
-//
-//    }
-
-    fun onClosePressed(v: View) {
-        activity?.onBackPressed()
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearPlaceSearchFromRepository()
     }
 
 }

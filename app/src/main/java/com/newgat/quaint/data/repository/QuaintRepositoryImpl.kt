@@ -1,5 +1,6 @@
 package com.newgat.quaint.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
@@ -23,6 +24,12 @@ class QuaintRepositoryImpl(
 
     override fun setCurrentPlaceName(name: String) {
         _currentPlaceNameInput.value = name
+        Log.d("Repository", "_currentPlaceNameInput:  ${_currentPlaceNameInput.value}")
+    }
+
+    override fun clearCurrentPlaceEntry() {
+        _currentPlaceNameInput.value = ""
+        Log.d("Repository", "_currentPlaceNameInput:  ${_currentPlaceNameInput.value}")
     }
 
     override suspend fun getLocationsList(): LiveData<List<LocationEntry>> {

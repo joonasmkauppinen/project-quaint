@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.newgat.quaint.data.repository.QuaintRepository
-import com.newgat.quaint.data.repository.QuaintRepositoryImpl
 
 class AddressSearchViewModel(
     private val repository: QuaintRepository
@@ -14,11 +13,19 @@ class AddressSearchViewModel(
     val currentAddressContent: LiveData<String>
         get() = repository.currentPlaceNameInput
 
-//    @Bindable
-//    val editTextContent = MutableLiveData<String>()
+
+    val editTextContent = MutableLiveData<String>()
 
     fun onEditTextChange() {
-//        repository.setCurrentPlaceName(editTextContent.value!!)
+        repository.setCurrentPlaceName(editTextContent.value!!)
+    }
+
+    fun clearPlaceSearchFromRepository() {
+        repository.clearCurrentPlaceEntry()
+    }
+
+    fun clearAddressInput() {
+        editTextContent.value = ""
     }
 
 }
