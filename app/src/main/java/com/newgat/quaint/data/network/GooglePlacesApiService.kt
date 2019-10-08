@@ -1,8 +1,8 @@
-package com.newgat.quaint.data
+package com.newgat.quaint.data.network
 
-import android.content.res.Resources
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.newgat.quaint.Config
+import com.newgat.quaint.data.network.response.GooglePlacesAutocompleteResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
