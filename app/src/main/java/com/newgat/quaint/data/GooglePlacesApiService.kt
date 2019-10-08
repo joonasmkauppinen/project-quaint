@@ -15,7 +15,7 @@ interface GooglePlacesApiService {
 
     @GET("json?")
     fun getAddressAutocompletePredictions(
-        @Query("address") address: String,
+        @Query("input") address: String,
         @Query("types") type: String = "address"
     ): Deferred<GooglePlacesAutocompleteResponse>
 
