@@ -5,13 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
 import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.network.GooglePlacesDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class QuaintRepositoryImpl(
-    private val locationsDao: LocationsDao
+    private val locationsDao: LocationsDao,
+    private val googlePlacesDataSource: GooglePlacesDataSource
 ) : QuaintRepository {
 
     private val _currentPlaceNameInput = MutableLiveData<String>()
@@ -20,6 +22,9 @@ class QuaintRepositoryImpl(
 
     init {
         _currentPlaceNameInput.value = ""
+        googlePlacesDataSource.currentInputPredictions.observeForever { newInputPrediction ->
+
+        }
     }
 
     override fun setCurrentPlaceName(name: String) {

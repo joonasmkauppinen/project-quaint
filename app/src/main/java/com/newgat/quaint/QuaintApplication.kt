@@ -2,6 +2,7 @@ package com.newgat.quaint
 
 import android.app.Application
 import com.newgat.quaint.data.db.QuaintDatabase
+import com.newgat.quaint.data.network.*
 import com.newgat.quaint.data.repository.QuaintRepository
 import com.newgat.quaint.data.repository.QuaintRepositoryImpl
 import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchViewModel
@@ -21,7 +22,10 @@ class QuaintApplication : Application(), KodeinAware {
 
         bind() from singleton { QuaintDatabase(instance()) }
         bind() from singleton { instance<QuaintDatabase>().locationsDao() }
-        bind<QuaintRepository>() with singleton { QuaintRepositoryImpl(instance()) }
+        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
+        bind() from singleton { GooglePlacesApiService(instance()) }
+        bind<GooglePlacesDataSource>() with singleton { GooglePlacesDataSourceImpl(instance()) }
+        bind<QuaintRepository>() with singleton { QuaintRepositoryImpl(instance(), instance()) }
         bind() from provider { LocationsSectionViewModelFactory(instance()) }
         bind() from provider { AddressSearchViewModelFactory(instance()) }
     }
