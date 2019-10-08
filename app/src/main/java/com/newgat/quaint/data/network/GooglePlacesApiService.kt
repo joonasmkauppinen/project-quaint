@@ -20,7 +20,9 @@ interface GooglePlacesApiService {
     ): Deferred<GooglePlacesAutocompleteResponse>
 
     companion object {
-        operator fun invoke(): GooglePlacesApiService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): GooglePlacesApiService {
             val API_KEY = Config.GCP_API_KEY.value
 
             // Intercept the request to add api key into the request
@@ -39,6 +41,7 @@ interface GooglePlacesApiService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()
