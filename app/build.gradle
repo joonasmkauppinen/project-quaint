@@ -84,6 +84,9 @@ dependencies {
     implementation "org.kodein.di:kodein-di-generic-jvm:5.2.0"
     implementation "org.kodein.di:kodein-di-framework-android-x:5.2.0"
 
+    // Gson
+    implementation "com.google.code.gson:gson:2.8.5"
+
 }
 
 apply plugin: 'com.google.gms.google-services'
