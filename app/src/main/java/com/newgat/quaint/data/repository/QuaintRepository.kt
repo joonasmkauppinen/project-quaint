@@ -6,6 +6,7 @@ import com.newgat.quaint.data.db.entity.Prediction
 
 interface QuaintRepository {
     // For address search fragment
+    fun setCurrentPlaceNameInput(placeName: String)
     val currentSelectedAddress: LiveData<Prediction>
     fun setNewCurrentSelectedAddress(prediction: Prediction)
     val currentPlacePredictions: LiveData<List<Prediction>>
@@ -13,5 +14,5 @@ interface QuaintRepository {
 
     // For locations section
     suspend fun getLocationsList(): LiveData<List<UserLocationEntry>>
-    fun insertLocation(location: UserLocationEntry)
+    fun insertLocation()
 }

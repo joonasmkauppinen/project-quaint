@@ -4,7 +4,10 @@ import androidx.lifecycle.ViewModel
 import com.newgat.quaint.data.repository.QuaintRepository
 
 class NewLocationFormViewModel(
-    repository: QuaintRepository
+    val repository: QuaintRepository
 ) : ViewModel() {
     val userSelectedAddress = repository.currentSelectedAddress
+    fun updatePlaceName(placeName: String) {
+        repository.setCurrentPlaceNameInput(placeName)
+    }
 }

@@ -8,7 +8,7 @@ import com.newgat.quaint.data.db.entity.UserLocationEntry
 
 @Database(
     entities = [UserLocationEntry::class],
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 abstract class QuaintDatabase : RoomDatabase() {

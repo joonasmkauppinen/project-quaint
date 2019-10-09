@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
 import com.newgat.quaint.data.db.entity.Prediction
@@ -47,7 +48,6 @@ class NewLocationForm : ScopedFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.new_location_form_fragment, container, false)
-        rootView.addressListItem.setOnClickListener { listener!!.openAddressSearch() }
         return rootView
     }
 
@@ -66,6 +66,10 @@ class NewLocationForm : ScopedFragment(), KodeinAware {
             else
                 setToAddressPlaceholder()
         })
+        rootView.addressListItem.setOnClickListener { listener!!.openAddressSearch() }
+        rootView.placeNameEditText.doOnTextChanged { text, _, _, _ ->
+            viewModel.updatePlaceName(text.toString())
+        }
     }
 
     private fun setToAddressPlaceholder() {

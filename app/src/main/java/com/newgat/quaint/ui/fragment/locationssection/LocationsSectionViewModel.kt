@@ -11,7 +11,4 @@ class LocationsSectionViewModel(
     val locations by lazyDeferred {
         repository.getLocationsList()
     }
-    fun saveLocation(location: UserLocationEntry) {
-        repository.insertLocation(location)
-    }
 }

@@ -47,16 +47,6 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
                 locationsTv.text = it.toString()
             }
         })
-        addLocationBtn.setOnClickListener {
-            val locationName = nameEt.text.toString()
-            val locationDesc = descriptoinEt.text.toString()
-            val newLocation = UserLocationEntry(locationName, locationDesc)
-            onAddLocation(newLocation)
-        }
-    }
-
-    private fun onAddLocation(newLocation: UserLocationEntry) = launch {
-            viewModel.saveLocation(newLocation)
     }
 
 }
