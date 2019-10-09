@@ -1,26 +1,35 @@
 package com.newgat.quaint.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
 import com.newgat.quaint.data.db.entity.UserLocationEntry
 import com.newgat.quaint.data.db.entity.Prediction
+import com.newgat.quaint.data.network.GoogleGeocodingDataSource
 import com.newgat.quaint.data.network.GooglePlacesDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class QuaintRepositoryImpl(
     private val locationsDao: LocationsDao,
-    private val googlePlacesDataSource: GooglePlacesDataSource
+    private val googlePlacesDataSource: GooglePlacesDataSource,
+    private val googleGeocodingDataSource: GoogleGeocodingDataSource
 ) : QuaintRepository {
 
     init {
         googlePlacesDataSource.downloadedInputPredictions.observeForever { newPredictions ->
             _currentPlacePredictions.postValue(newPredictions.predictions)
         }
+        googleGeocodingDataSource.downloadedGeocodingResult.observeForever { geocodingResponse ->
+            Log.d("Repository", "Geocoding response: $geocodingResponse")
+        }
     }
+
+
 
     private val _currentSelectedAddress = MutableLiveData<Prediction>()
     override val currentSelectedAddress: LiveData<Prediction>
@@ -28,6 +37,10 @@ class QuaintRepositoryImpl(
 
     override fun setNewCurrentSelectedAddress(prediction: Prediction) {
         _currentSelectedAddress.postValue(prediction)
+        GlobalScope.launch(Dispatchers.IO) {
+            val placeId = prediction.place_id
+            googleGeocodingDataSource.fetchGeocodingForAddress(placeId)
+        }
     }
 
     private val _currentPlacePredictions = MutableLiveData<List<Prediction>>()
