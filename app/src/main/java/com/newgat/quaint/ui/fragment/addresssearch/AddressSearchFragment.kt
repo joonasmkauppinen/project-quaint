@@ -54,7 +54,8 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
             if (predictions == null) return@Observer
             updateRecyclerViewItems(predictions.toAddressPredictionItems())
         })
-        
+
+        rootView.closeAddressSearchButton.setOnClickListener(this)
         rootView.clearAddressSearchButton.setOnClickListener(this)
         rootView.addressInputEditText.doOnTextChanged { text, _, _, _ ->
             updateClearButton(text!!)
