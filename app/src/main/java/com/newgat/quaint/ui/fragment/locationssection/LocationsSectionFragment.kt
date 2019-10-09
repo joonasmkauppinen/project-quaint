@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 import com.newgat.quaint.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.locations_section_fragment.*
 import kotlinx.coroutines.launch
@@ -50,12 +50,12 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
         addLocationBtn.setOnClickListener {
             val locationName = nameEt.text.toString()
             val locationDesc = descriptoinEt.text.toString()
-            val newLocation = LocationEntry(null, locationName, locationDesc)
+            val newLocation = UserLocationEntry(null, locationName, locationDesc)
             onAddLocation(newLocation)
         }
     }
 
-    private fun onAddLocation(newLocation: LocationEntry) = launch {
+    private fun onAddLocation(newLocation: UserLocationEntry) = launch {
             viewModel.saveLocation(newLocation)
     }
 

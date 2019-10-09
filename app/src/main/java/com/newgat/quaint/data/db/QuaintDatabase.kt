@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 
 @Database(
-    entities = [LocationEntry::class],
+    entities = [UserLocationEntry::class],
     version = 1
 )
 abstract class QuaintDatabase : RoomDatabase() {

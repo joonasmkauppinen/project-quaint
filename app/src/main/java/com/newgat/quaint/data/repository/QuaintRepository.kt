@@ -1,7 +1,7 @@
 package com.newgat.quaint.data.repository
 
 import androidx.lifecycle.LiveData
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 import com.newgat.quaint.data.db.entity.Prediction
 
 interface QuaintRepository {
@@ -12,6 +12,6 @@ interface QuaintRepository {
     fun fetchPlacePredictionsForInput(input: String)
 
     // For locations section
-    suspend fun getLocationsList(): LiveData<List<LocationEntry>>
-    fun insertLocation(location: LocationEntry)
+    suspend fun getLocationsList(): LiveData<List<UserLocationEntry>>
+    fun insertLocation(location: UserLocationEntry)
 }

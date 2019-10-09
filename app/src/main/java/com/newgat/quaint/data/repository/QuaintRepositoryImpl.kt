@@ -1,10 +1,9 @@
 package com.newgat.quaint.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 import com.newgat.quaint.data.db.entity.Prediction
 import com.newgat.quaint.data.network.GooglePlacesDataSource
 import kotlinx.coroutines.Dispatchers
@@ -41,13 +40,13 @@ class QuaintRepositoryImpl(
         }
     }
 
-    override suspend fun getLocationsList(): LiveData<List<LocationEntry>> {
+    override suspend fun getLocationsList(): LiveData<List<UserLocationEntry>> {
         return withContext(Dispatchers.IO) {
             return@withContext locationsDao.getAllLocations()
         }
     }
 
-    override fun insertLocation(location: LocationEntry) {
+    override fun insertLocation(location: UserLocationEntry) {
         GlobalScope.launch(Dispatchers.IO) {
             locationsDao.insert(location)
         }
