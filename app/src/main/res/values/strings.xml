@@ -14,4 +14,6 @@
     <string name="input_hint_enter_address">Enter address</string>
     <string name="content_description_location_pin_icon">Location pin icon.</string>
     <string name="content_description_name_tag_icon">Name tag icon.</string>
+    <string name="choose_on_map">Choose on map</string>
+    <string name="content_description_map_icon">Map icon</string>
 </resources>

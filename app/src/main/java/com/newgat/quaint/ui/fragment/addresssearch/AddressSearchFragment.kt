@@ -13,8 +13,10 @@ import com.newgat.quaint.R
 import com.newgat.quaint.data.db.entity.Prediction
 import com.newgat.quaint.ui.base.ScopedFragment
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.address_prediction_list_item.view.*
+import kotlinx.android.synthetic.main.address_predictions_footer.*
 import kotlinx.android.synthetic.main.address_search_fragment.*
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
 import org.jetbrains.anko.support.v4.toast
@@ -29,7 +31,7 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
 
     private lateinit var viewModel: AddressSearchViewModel
     private lateinit var rootView: View
-    private lateinit var groupAdapter: GroupAdapter<ViewHolder>
+    private lateinit var addressPredictionsSection: Section
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +69,18 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
     }
 
     private fun initRecyclerView() {
-        groupAdapter = GroupAdapter()
+        addressPredictionsSection= Section().apply {
+            setFooter(AddressPredictionFooter())
+        }
+        val groupAdapter = GroupAdapter<ViewHolder>().apply {
+            add(addressPredictionsSection)
+            setOnItemClickListener { item, view ->
+                when (view) {
+                    chooseOnMapItem -> toast("TODO: open map")
+                }
+            }
+        }
+
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AddressSearchFragment.context)
             adapter = groupAdapter
@@ -75,7 +88,7 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
     }
 
     private fun updateRecyclerViewItems(items: List<AddressPredictionItem>) {
-        groupAdapter.update(items)
+        addressPredictionsSection.update(items)
     }
 
     override fun onDestroy() {
