@@ -5,8 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_locations")
 data class UserLocationEntry (
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
     val name: String,
     val description: String
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}

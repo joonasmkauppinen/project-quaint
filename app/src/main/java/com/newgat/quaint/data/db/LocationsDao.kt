@@ -12,6 +12,6 @@ interface LocationsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(userLocationEntry: UserLocationEntry)
 
-    @Query("select * from locations")
+    @Query("select * from user_locations")
     fun getAllLocations(): LiveData<List<UserLocationEntry>>
 }

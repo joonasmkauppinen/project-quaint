@@ -50,7 +50,7 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
         addLocationBtn.setOnClickListener {
             val locationName = nameEt.text.toString()
             val locationDesc = descriptoinEt.text.toString()
-            val newLocation = UserLocationEntry(null, locationName, locationDesc)
+            val newLocation = UserLocationEntry(locationName, locationDesc)
             onAddLocation(newLocation)
         }
     }

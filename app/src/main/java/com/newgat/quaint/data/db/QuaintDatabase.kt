@@ -8,7 +8,8 @@ import com.newgat.quaint.data.db.entity.UserLocationEntry
 
 @Database(
     entities = [UserLocationEntry::class],
-    version = 1
+    version = 2,
+    exportSchema = true
 )
 abstract class QuaintDatabase : RoomDatabase() {
     abstract fun locationsDao(): LocationsDao
@@ -26,6 +27,7 @@ abstract class QuaintDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 QuaintDatabase::class.java, "quaint.db")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }
