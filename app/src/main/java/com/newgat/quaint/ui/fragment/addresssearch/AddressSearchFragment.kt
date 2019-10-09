@@ -54,12 +54,13 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
             if (predictions == null) return@Observer
             updateRecyclerViewItems(predictions.toAddressPredictionItems())
         })
-
+        
         rootView.clearAddressSearchButton.setOnClickListener(this)
         rootView.addressInputEditText.doOnTextChanged { text, _, _, _ ->
-            Log.d("AddressSearchFragment", "Edit text input: $text")
+            updateClearButton(text!!)
             viewModel.onEditTextChange(text.toString())
         }
+        updateClearButton("")
     }
 
     private fun List<Prediction>.toAddressPredictionItems() : List<AddressPredictionItem> {
@@ -113,5 +114,24 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
 
     private fun clearSearchField() {
         rootView.addressInputEditText.text.clear()
+    }
+
+    private fun disableButton() {
+        rootView.clearAddressSearchButton.apply {
+            isEnabled = false
+            visibility = View.INVISIBLE
+        }
+    }
+
+    private fun enableButton() {
+        rootView.clearAddressSearchButton.apply {
+            isEnabled = true
+            visibility = View.VISIBLE
+        }
+    }
+
+    private fun updateClearButton(text: CharSequence) {
+        val value = text.toString()
+        if (value != "") enableButton() else disableButton()
     }
 }
