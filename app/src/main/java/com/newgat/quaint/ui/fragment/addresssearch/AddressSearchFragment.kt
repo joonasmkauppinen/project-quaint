@@ -2,53 +2,71 @@ package com.newgat.quaint.ui.fragment.addresssearch
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.core.widget.doAfterTextChanged
-import androidx.databinding.DataBindingUtil
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
-import com.newgat.quaint.databinding.AddressSearchFragmentBinding
+import com.newgat.quaint.ui.base.ScopedFragment
+import kotlinx.android.synthetic.main.address_search_fragment.*
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
-import org.jetbrains.anko.support.v4.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class AddressSearchFragment : Fragment(), KodeinAware {
+class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListener {
 
     override val kodein by closestKodein()
     private val viewModelFactory: AddressSearchViewModelFactory by instance()
 
-    private lateinit var binding: AddressSearchFragmentBinding
     private lateinit var viewModel: AddressSearchViewModel
+    private lateinit var rootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.address_search_fragment,
-            container,
-            false
-        )
+        rootView = inflater.inflate(R.layout.address_search_fragment, container, false)
+        return rootView
+    }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(AddressSearchViewModel::class.java)
+        bindUI()
+    }
 
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
-        binding.addressInputEditText.doAfterTextChanged { viewModel.onEditTextChange() }
-        return binding.root
+    private fun bindUI() {
+        viewModel.addressPredictions.observe(this@AddressSearchFragment, Observer { predictions ->
+            if (predictions.isEmpty() || predictions == null) return@Observer
+            rootView.testText.text = predictions.toString()
+        })
+
+        rootView.closeAddressSearch.setOnClickListener(this)
+        rootView.clearAddressSearchButton.setOnClickListener(this)
+        rootView.addressInputEditText.doOnTextChanged { text, start, count, after ->
+            Log.d("AddressSearchFragment", "Edit text input: $text")
+            viewModel.onEditTextChange(text.toString())
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.clearPlaceSearchFromRepository()
+        // TODO: implement search clean up
     }
 
+    override fun onClick(v: View?) {
+        when (v) {
+            closeAddressSearch -> activity!!.onBackPressed()
+            clearAddressSearchButton -> clearSearchField()
+        }
+    }
+
+    private fun clearSearchField() {
+        rootView.addressInputEditText.text.clear()
+    }
 }

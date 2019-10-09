@@ -1,7 +1,7 @@
 package com.newgat.quaint.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.newgat.quaint.Config
+import com.newgat.quaint.GCP_API_KEY
 import com.newgat.quaint.data.network.response.GooglePlacesAutocompleteResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -23,14 +23,12 @@ interface GooglePlacesApiService {
         operator fun invoke(
             connectivityInterceptor: ConnectivityInterceptor
         ): GooglePlacesApiService {
-            val API_KEY = Config.GCP_API_KEY.value
-
             // Intercept the request to add api key into the request
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("key", API_KEY)
+                    .addQueryParameter("key", GCP_API_KEY)
                     .build()
                 val request = chain.request()
                     .newBuilder()

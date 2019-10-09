@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newgat.quaint.data.db.LocationsDao
 import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.Prediction
 import com.newgat.quaint.data.network.GooglePlacesDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,25 +17,20 @@ class QuaintRepositoryImpl(
     private val googlePlacesDataSource: GooglePlacesDataSource
 ) : QuaintRepository {
 
-    private val _currentPlaceNameInput = MutableLiveData<String>()
-    override val currentPlaceNameInput: LiveData<String>
-        get() = _currentPlaceNameInput
-
     init {
-        _currentPlaceNameInput.value = ""
-        googlePlacesDataSource.currentInputPredictions.observeForever { newInputPrediction ->
-
+        googlePlacesDataSource.downloadedInputPredictions.observeForever { newPredictions ->
+            _currentPlacePredictions.postValue(newPredictions.predictions)
         }
     }
 
-    override fun setCurrentPlaceName(name: String) {
-        _currentPlaceNameInput.value = name
-        Log.d("Repository", "_currentPlaceNameInput:  ${_currentPlaceNameInput.value}")
-    }
+    private val _currentPlacePredictions = MutableLiveData<List<Prediction>>()
+    override val currentPlacePredictions: LiveData<List<Prediction>>
+        get() = _currentPlacePredictions
 
-    override fun clearCurrentPlaceEntry() {
-        _currentPlaceNameInput.value = ""
-        Log.d("Repository", "_currentPlaceNameInput:  ${_currentPlaceNameInput.value}")
+    override fun fetchPlacePredictionsForInput(input: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            googlePlacesDataSource.fetchInputPredictions(input)
+        }
     }
 
     override suspend fun getLocationsList(): LiveData<List<LocationEntry>> {

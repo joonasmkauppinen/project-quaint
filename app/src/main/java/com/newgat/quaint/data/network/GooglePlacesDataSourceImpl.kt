@@ -10,16 +10,16 @@ class GooglePlacesDataSourceImpl(
     private val googlePlacesApiService: GooglePlacesApiService
 ) : GooglePlacesDataSource {
 
-    private val _currentInputPredictions = MutableLiveData<GooglePlacesAutocompleteResponse>()
-    override val currentInputPredictions: LiveData<GooglePlacesAutocompleteResponse>
-        get() = _currentInputPredictions
+    private val _downloadedInputPredictions = MutableLiveData<GooglePlacesAutocompleteResponse>()
+    override val downloadedInputPredictions: LiveData<GooglePlacesAutocompleteResponse>
+        get() = _downloadedInputPredictions
 
     override suspend fun fetchInputPredictions(input: String) {
         try {
             val fetchedInputPredictions = googlePlacesApiService
                 .getAddressAutocompletePredictions(input)
                 .await()
-            _currentInputPredictions.postValue(fetchedInputPredictions)
+            _downloadedInputPredictions.postValue(fetchedInputPredictions)
         } catch (e: NoConnectivityException) {
             Log.e("GooglePlacesDataSource", "No internet connection. ", e)
         }
