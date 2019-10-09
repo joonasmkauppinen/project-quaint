@@ -16,9 +16,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.address_prediction_list_item.view.*
 import kotlinx.android.synthetic.main.address_search_fragment.*
-import kotlinx.android.synthetic.main.address_search_fragment.fillPredictionButton
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
-import kotlinx.android.synthetic.main.address_search_fragment.view.fillPredictionButton
 import org.jetbrains.anko.support.v4.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -31,6 +29,7 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
 
     private lateinit var viewModel: AddressSearchViewModel
     private lateinit var rootView: View
+    private lateinit var groupAdapter: GroupAdapter<ViewHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,12 +47,12 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
     }
 
     private fun bindUI() {
+        initRecyclerView()
         viewModel.addressPredictions.observe(this@AddressSearchFragment, Observer { predictions ->
             if (predictions == null) return@Observer
-            initRecyclerView(predictions.toAddressPredictionItems())
+            updateRecyclerViewItems(predictions.toAddressPredictionItems())
         })
 
-        rootView.fillPredictionButton.setOnClickListener(this)
         rootView.clearAddressSearchButton.setOnClickListener(this)
         rootView.addressInputEditText.doOnTextChanged { text, _, _, _ ->
             Log.d("AddressSearchFragment", "Edit text input: $text")
@@ -67,15 +66,16 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
         }
     }
 
-    private fun initRecyclerView(items: List<AddressPredictionItem>) {
-        val groupAdapter = GroupAdapter<ViewHolder>().apply {
-            addAll(items)
-        }
-
+    private fun initRecyclerView() {
+        groupAdapter = GroupAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AddressSearchFragment.context)
             adapter = groupAdapter
         }
+    }
+
+    private fun updateRecyclerViewItems(items: List<AddressPredictionItem>) {
+        groupAdapter.update(items)
     }
 
     override fun onDestroy() {
