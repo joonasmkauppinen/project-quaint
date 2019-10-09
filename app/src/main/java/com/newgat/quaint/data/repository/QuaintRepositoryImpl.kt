@@ -23,6 +23,14 @@ class QuaintRepositoryImpl(
         }
     }
 
+    private val _currentSelectedAddress = MutableLiveData<Prediction>()
+    override val currentSelectedAddress: LiveData<Prediction>
+        get() = _currentSelectedAddress
+
+    override fun setNewCurrentSelectedAddress(prediction: Prediction) {
+        _currentSelectedAddress.postValue(prediction)
+    }
+
     private val _currentPlacePredictions = MutableLiveData<List<Prediction>>()
     override val currentPlacePredictions: LiveData<List<Prediction>>
         get() = _currentPlacePredictions

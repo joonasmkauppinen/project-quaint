@@ -1,11 +1,13 @@
 package com.newgat.quaint.ui.fragment.addresssearch
 
+import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +17,6 @@ import com.newgat.quaint.ui.base.ScopedFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.address_prediction_list_item.view.*
 import kotlinx.android.synthetic.main.address_predictions_footer.*
 import kotlinx.android.synthetic.main.address_search_fragment.*
 import kotlinx.android.synthetic.main.address_search_fragment.view.*
@@ -24,7 +25,8 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListener, AddressPredictionItem.PredictionItemClickListener {
+class AddressSearchFragment : ScopedFragment(),
+    KodeinAware, View.OnClickListener, AddressPredictionItem.PredictionItemClickListener {
 
     override val kodein by closestKodein()
     private val viewModelFactory: AddressSearchViewModelFactory by instance()
@@ -61,6 +63,8 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
             updateClearButton(text!!)
             viewModel.onEditTextChange(text.toString())
         }
+        rootView.addressInputEditText.requestFocus()
+        showKeyboard()
         updateClearButton("")
     }
 
@@ -102,8 +106,22 @@ class AddressSearchFragment : ScopedFragment(), KodeinAware, View.OnClickListene
         rootView.addressInputEditText.setText(streetName)
     }
 
-    override fun onItemPredictionClicked() {
-        toast("Clicked on prediction item")
+    override fun onItemPredictionClicked(prediction: Prediction) {
+        hideKeyboard()
+        viewModel.onAddressSelected(prediction)
+        activity!!.onBackPressed()
+    }
+
+    private fun hideKeyboard() {
+        (activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+            toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        }
+    }
+
+    private fun showKeyboard() {
+        (activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+            toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
+        }
     }
 
     override fun onClick(v: View?) {

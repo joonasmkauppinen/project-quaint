@@ -7,21 +7,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.newgat.quaint.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.address_search_fragment.view.*
+import com.newgat.quaint.data.db.entity.Prediction
+import com.newgat.quaint.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.new_location_form_fragment.view.*
+import org.jetbrains.anko.textColor
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 import java.lang.ClassCastException
 
+class NewLocationForm : ScopedFragment(), KodeinAware {
 
-class NewLocationForm : Fragment() {
+    override val kodein by closestKodein()
+    private val viewModelFactory: NewLocationFormViewModelFactory by instance()
 
-    private lateinit var listener: NewLocationFormListener
+    private var listener: NewLocationFormListener? = null
     private lateinit var viewModel: NewLocationFormViewModel
-
-//    companion object {
-//        fun newInstance() = NewLocationForm()
-//    }
+    private lateinit var rootView: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,19 +37,49 @@ class NewLocationForm : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.new_location_form_fragment, container, false)
-        view.addressListItem.setOnClickListener { listener.openAddressSearch() }
-        return view
+        rootView = inflater.inflate(R.layout.new_location_form_fragment, container, false)
+        rootView.addressListItem.setOnClickListener { listener!!.openAddressSearch() }
+        return rootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NewLocationFormViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(NewLocationFormViewModel::class.java)
+
+        bindUI()
+    }
+
+    private fun bindUI() {
+        viewModel.userSelectedAddress.observe(this@NewLocationForm, Observer { prediction ->
+            if (prediction != null)
+                updateSelectedAddress(prediction)
+            else
+                setToAddressPlaceholder()
+        })
+    }
+
+    private fun setToAddressPlaceholder() {
+        rootView.newLocationAddressTextView.apply {
+            text = getString(R.string.input_hint_address)
+            textColor = ContextCompat.getColor(context, R.color.colorInputHint)
+        }
+    }
+
+    private fun updateSelectedAddress(prediction: Prediction) {
+        rootView.newLocationAddressTextView.apply {
+            text = prediction.structured_formatting.main_text
+            textColor = ContextCompat.getColor(context, R.color.colorWhite)
+        }
     }
 
     interface NewLocationFormListener {

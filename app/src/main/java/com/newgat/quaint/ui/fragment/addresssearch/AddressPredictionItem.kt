@@ -1,7 +1,5 @@
 package com.newgat.quaint.ui.fragment.addresssearch
 
-import android.content.Context
-import android.view.View
 import com.newgat.quaint.R
 import com.newgat.quaint.data.db.entity.Prediction
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -9,7 +7,7 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.address_prediction_list_item.*
 
 class AddressPredictionItem(
-    val listener: PredictionItemClickListener,
+    private val listener: PredictionItemClickListener,
     private val prediction: Prediction
 ) : Item() {
 
@@ -17,7 +15,7 @@ class AddressPredictionItem(
         viewHolder.apply {
             addressPredictionTextView.text = prediction.description
             fillPredictionButton.setOnClickListener{ listener.onFillClicked(prediction.description) }
-            predictionItem.setOnClickListener{ listener.onItemPredictionClicked() }
+            predictionItem.setOnClickListener{ listener.onItemPredictionClicked(prediction) }
         }
     }
 
@@ -25,6 +23,6 @@ class AddressPredictionItem(
 
     interface PredictionItemClickListener {
         fun onFillClicked(streetName: String)
-        fun onItemPredictionClicked()
+        fun onItemPredictionClicked(prediction: Prediction)
     }
 }
