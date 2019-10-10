@@ -28,12 +28,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModal
 
         openBottomSheetButton.setOnClickListener(this)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.rootLayout, MainFeedFragment())
-                .commit()
-        }
-
         // TODO: Move logic into PermissionsProvider
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -53,6 +47,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModal
             putExtra(EXTRA_ACTION_TYPE, action)
         }
         startActivity(intent)
-
     }
 }
