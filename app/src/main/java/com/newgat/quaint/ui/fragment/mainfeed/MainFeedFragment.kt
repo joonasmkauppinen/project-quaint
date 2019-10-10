@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newgat.quaint.R
 import com.newgat.quaint.data.db.entity.UserLocationEntry
+import com.newgat.quaint.data.db.entity.UserNoteEntry
 import com.newgat.quaint.ui.base.ScopedFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
@@ -51,9 +52,9 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
         })
 
         val notes = viewModel.notes.await()
-//        notes.observe(this@MainFeedFragment, Observer {
-//
-//        })
+        notes.observe(this@MainFeedFragment, Observer {
+            updateNotesSection(it)
+        })
     }
 
     private fun initRecyclerView() {
@@ -83,6 +84,16 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     private fun List<UserLocationEntry>.toLocationItems() : List<LocationItem> {
         return this.map {
            LocationItem(it)
+        }
+    }
+
+    private fun updateNotesSection(items: List<UserNoteEntry>) {
+        notesSection.update(items.toNoteItems())
+    }
+
+    private fun List<UserNoteEntry>.toNoteItems() : List<NoteItem> {
+        return this.map {
+            NoteItem(it)
         }
     }
 
