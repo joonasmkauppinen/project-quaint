@@ -14,4 +14,7 @@ interface LocationsDao {
 
     @Query("select * from user_locations")
     fun getAllLocations(): LiveData<List<UserLocationEntry>>
+
+    @Query("select name from user_locations")
+    fun getAllLocationNames(): List<String>
 }

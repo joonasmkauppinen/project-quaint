@@ -10,9 +10,16 @@ import androidx.core.content.ContextCompat
 import com.newgat.quaint.R
 
 class PlacesSpinnerAdapter(
-    val context: Context, private val listItems: ArrayList<String>
+    val context: Context, private val placeNames: List<String>
 ) : BaseAdapter() {
 
+    private val placeHolderString = context.resources.getString(R.string.hint_add_place)
+    private val listItems = ArrayList<String>().apply {
+        add(placeHolderString)
+        placeNames.forEach {
+            add(it)
+        }
+    }
     private val _inflater = LayoutInflater.from(context)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

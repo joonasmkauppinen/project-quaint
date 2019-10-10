@@ -9,13 +9,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 
 import com.newgat.quaint.R
+import com.newgat.quaint.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.new_note_form_fragment.view.*
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class NewNoteForm : Fragment(), KodeinAware {
+class NewNoteForm : ScopedFragment(), KodeinAware {
 
     override val kodein by closestKodein()
     private val viewModelFactory: NewNoteFormViewModelFactory by instance()
@@ -37,17 +39,13 @@ class NewNoteForm : Fragment(), KodeinAware {
             .get(NewNoteFormViewModel::class.java)
         // TODO: Use the ViewModel
 
-        val placeArray = ArrayList<String>().apply {
-            add("Add place (optional)")
-            add("Home")
-            add("School")
-            add("Work")
-            add("Mall")
-        }
+        bindUI()
+    }
+
+    private fun bindUI() = launch {
+        val placeArray = viewModel.userPlaces.await()
         val adapter = PlacesSpinnerAdapter(context!!, placeArray)
         rootView.notePlaceDropdown.adapter = adapter
     }
-
-
 
 }

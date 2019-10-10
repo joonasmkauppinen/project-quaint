@@ -19,4 +19,5 @@
     <string name="content_description_powered_by_google_logo">Powered by Google logo</string>
     <string name="hint_title">Title</string>
     <string name="hint_note_content">Note content</string>
+    <string name="hint_add_place">Add place (optional)</string>
 </resources>

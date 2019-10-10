@@ -70,9 +70,16 @@ class QuaintRepositoryImpl(
         }
     }
 
+
     override suspend fun getLocationsList(): LiveData<List<UserLocationEntry>> {
         return withContext(Dispatchers.IO) {
             return@withContext locationsDao.getAllLocations()
+        }
+    }
+
+    override suspend fun getLocationNames(): List<String> {
+        return withContext(Dispatchers.IO) {
+            return@withContext locationsDao.getAllLocationNames()
         }
     }
 

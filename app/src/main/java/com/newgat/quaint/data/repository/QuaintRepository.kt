@@ -16,5 +16,6 @@ interface QuaintRepository {
 
     // For locations section
     suspend fun getLocationsList(): LiveData<List<UserLocationEntry>>
+    suspend fun getLocationNames(): List<String>
     fun insertLocation()
 }
