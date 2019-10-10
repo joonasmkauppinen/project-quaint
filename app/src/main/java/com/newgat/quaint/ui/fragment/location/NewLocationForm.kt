@@ -59,6 +59,11 @@ class NewLocationForm : ScopedFragment(), KodeinAware {
         bindUI()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.clearInputFields()
+    }
+
     private fun bindUI() {
         viewModel.userSelectedAddress.observe(this@NewLocationForm, Observer { prediction ->
             if (prediction != null)

@@ -10,4 +10,7 @@ class NewLocationFormViewModel(
     fun updatePlaceName(placeName: String) {
         repository.setCurrentPlaceNameInput(placeName)
     }
+    fun clearInputFields() {
+        repository.clearCurrentlySelectedAddress()
+    }
 }
