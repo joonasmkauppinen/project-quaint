@@ -4,32 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@android:color/black"
     tools:context=".ui.fragment.mainfeed.MainFeedFragment">
 
-    <TextView
-        android:id="@+id/locationsTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="Locations Section"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/notesTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Notes"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/locationsTv"
-        app:layout_constraintStart_toStartOf="@+id/locationsTv"
-        app:layout_constraintTop_toBottomOf="@+id/locationsTv" />
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/mainFeedRecyclerView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
