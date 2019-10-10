@@ -21,7 +21,7 @@ class NoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.note_fragment, container, false)
+        return inflater.inflate(R.layout.new_note_form_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

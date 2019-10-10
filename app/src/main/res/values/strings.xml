@@ -17,4 +17,6 @@
     <string name="choose_on_map">Choose on map</string>
     <string name="content_description_map_icon">Map icon</string>
     <string name="content_description_powered_by_google_logo">Powered by Google logo</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_note_content">Note content</string>
 </resources>
