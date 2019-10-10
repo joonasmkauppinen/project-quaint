@@ -162,7 +162,6 @@ class GeofenceTransitionsJobIntentService : JobIntentService() {
     private fun getTransitionString(transitionType: Int): String {
         when (transitionType) {
             Geofence.GEOFENCE_TRANSITION_ENTER -> return getString(R.string.geofence_transition_entered)
-            Geofence.GEOFENCE_TRANSITION_EXIT -> return getString(R.string.geofence_transition_exited)
             else -> return getString(R.string.unknown_geofence_transition)
         }
     }
