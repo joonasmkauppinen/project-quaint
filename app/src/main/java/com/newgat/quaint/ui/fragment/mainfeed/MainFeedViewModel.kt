@@ -1,10 +1,10 @@
-package com.newgat.quaint.ui.fragment.locationssection
+package com.newgat.quaint.ui.fragment.mainfeed
 
 import androidx.lifecycle.ViewModel
 import com.newgat.quaint.data.repository.QuaintRepository
 import com.newgat.quaint.internal.lazyDeferred
 
-class LocationsSectionViewModel(
+class MainFeedViewModel(
     private val repository: QuaintRepository
 ) : ViewModel() {
     val locations by lazyDeferred {
