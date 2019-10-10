@@ -81,7 +81,7 @@ class NewLocationForm : ScopedFragment(), KodeinAware {
 
     private fun updateSelectedAddress(prediction: Prediction) {
         rootView.newLocationAddressTextView.apply {
-            text = prediction.structured_formatting.main_text
+            text = prediction.description
             textColor = ContextCompat.getColor(context, R.color.colorWhite)
         }
     }
