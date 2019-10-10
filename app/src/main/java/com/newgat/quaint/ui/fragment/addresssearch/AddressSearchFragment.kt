@@ -103,7 +103,11 @@ class AddressSearchFragment : ScopedFragment(),
     }
 
     override fun onFillClicked(streetName: String) {
-        rootView.addressInputEditText.setText(streetName)
+        rootView.addressInputEditText.apply {
+            val caretPosition = streetName.length
+            setText(streetName)
+            setSelection(caretPosition)
+        }
     }
 
     override fun onItemPredictionClicked(prediction: Prediction) {
