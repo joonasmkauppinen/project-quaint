@@ -10,4 +10,20 @@ class NewNoteFormViewModel(
     val userPlaces by lazyDeferred {
         repository.getLocationNames()
     }
+
+    fun setNewNoteTitle(title: String) {
+        repository.setNewCurrentNewNoteTitle(title)
+    }
+
+    fun setNewNoteLocationName(locationName: String) {
+        repository.setNewCurrentNewNoteLocationName(locationName)
+    }
+
+    fun setNewNoteContent(content: String) {
+        repository.setNewCurrentNewNoteContent(content)
+    }
+
+    fun clearNewNoteFields() {
+        repository.clearCurrentNewNoteFields()
+    }
 }

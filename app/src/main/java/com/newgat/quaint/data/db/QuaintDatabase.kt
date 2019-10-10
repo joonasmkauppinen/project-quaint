@@ -5,9 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.newgat.quaint.data.db.entity.UserLocationEntry
+import com.newgat.quaint.data.db.entity.UserNoteEntry
 
 @Database(
-    entities = [UserLocationEntry::class],
+    entities = [
+        UserLocationEntry::class,
+        UserNoteEntry::class
+    ],
     version = 3,
     exportSchema = true
 )

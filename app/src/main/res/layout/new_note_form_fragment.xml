@@ -7,6 +7,7 @@
     tools:context=".ui.fragment.note.NewNoteForm">
 
     <EditText
+        android:id="@+id/newNoteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="18dp"
@@ -31,6 +32,7 @@
         android:background="@drawable/list_item_background_bottom_stroke"/>
 
     <EditText
+        android:id="@+id/newNoteContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

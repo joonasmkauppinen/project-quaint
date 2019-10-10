@@ -33,10 +33,7 @@ class NewActionActivity : AppCompatActivity(), KodeinAware, NewLocationForm.NewL
         setToolbarTitle(action)
         setActionForm(action)
 
-        saveActionButton.setOnClickListener {
-            viewModel.saveUserPlace()
-            finish()
-        }
+        saveActionButton.setOnClickListener { saveNewAction() }
     }
 
 
@@ -47,6 +44,14 @@ class NewActionActivity : AppCompatActivity(), KodeinAware, NewLocationForm.NewL
             ActionType.LOCATION -> getString(R.string.new_location_title)
         }
         addressInputEditText.text = title
+    }
+
+    private fun saveNewAction() {
+        when (action) {
+            ActionType.NOTE -> viewModel.saveUserNote()
+            ActionType.LOCATION -> viewModel.saveUserPlace()
+        }
+        finish()
     }
 
     private fun setActionForm(action: ActionType) {

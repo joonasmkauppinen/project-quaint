@@ -5,9 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_notes")
 data class UserNoteEntry(
-    val title: String,
-    val content: String,
-    val note_location_id: Int
+    val title: String?,
+    val content: String?,
+    val note_location_id: Int?,
+    val note_location_name: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
