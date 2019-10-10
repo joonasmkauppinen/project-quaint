@@ -10,6 +10,7 @@ import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchViewModel
 import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchViewModelFactory
 import com.newgat.quaint.ui.fragment.location.NewLocationFormViewModelFactory
 import com.newgat.quaint.ui.fragment.locationssection.LocationsSectionViewModelFactory
+import com.newgat.quaint.ui.fragment.note.NewNoteFormViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -31,6 +32,7 @@ class QuaintApplication : Application(), KodeinAware {
         bind<GoogleGeocodingDataSource>() with singleton { GoogleGeocodingDataSourceImpl(instance()) }
         bind<QuaintRepository>() with singleton { QuaintRepositoryImpl(instance(), instance(), instance()) }
         bind() from provider { NewActionViewModelFactory(instance()) }
+        bind() from provider { NewNoteFormViewModelFactory(instance()) }
         bind() from provider { NewLocationFormViewModelFactory(instance()) }
         bind() from provider { LocationsSectionViewModelFactory(instance()) }
         bind() from provider { AddressSearchViewModelFactory(instance()) }

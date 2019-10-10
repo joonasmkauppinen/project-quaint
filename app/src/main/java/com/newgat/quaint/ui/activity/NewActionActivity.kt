@@ -8,6 +8,7 @@ import com.newgat.quaint.R
 import com.newgat.quaint.internal.ActionType
 import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchFragment
 import com.newgat.quaint.ui.fragment.location.NewLocationForm
+import com.newgat.quaint.ui.fragment.note.NewNoteForm
 import kotlinx.android.synthetic.main.activity_new_action.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -51,7 +52,7 @@ class NewActionActivity : AppCompatActivity(), KodeinAware, NewLocationForm.NewL
     private fun setActionForm(action: ActionType) {
         supportFragmentManager.beginTransaction().apply {
             when (action) {
-//                ActionType.NOTE -> replace(R.id.actionForm,)
+                ActionType.NOTE -> replace(R.id.actionFormRoot, NewNoteForm())
                 ActionType.LOCATION -> replace(R.id.actionFormRoot, NewLocationForm())
             }
             commit()

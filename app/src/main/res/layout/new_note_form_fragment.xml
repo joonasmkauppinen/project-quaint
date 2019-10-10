@@ -9,11 +9,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
         android:paddingStart="@dimen/screen_margin"
         android:paddingEnd="@dimen/screen_margin"
         android:background="@drawable/list_item_background_bottom_stroke"
         android:inputType="textCapSentences|textMultiLine"
-        android:minHeight="64dp"
         android:fontFamily="@font/pier_sans_regular"
         android:textSize="19sp"
         android:textColor="@color/colorWhite"
@@ -21,9 +22,12 @@
         android:hint="@string/hint_title"/>
 
     <Spinner
-        android:id="@+id/notePlaceDropDown"
+        android:id="@+id/notePlaceDropdown"
         android:layout_width="match_parent"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
         android:layout_height="64dp"
+        android:popupBackground="@drawable/bottom_sheet_modal_background"
         android:background="@drawable/list_item_background_bottom_stroke"/>
 
     <EditText
