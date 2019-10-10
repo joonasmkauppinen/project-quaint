@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.note.NewNoteForm">
+
+    <EditText
+        android:id="@+id/newNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:background="@drawable/list_item_background_bottom_stroke"
+        android:inputType="textCapSentences|textMultiLine"
+        android:fontFamily="@font/pier_sans_regular"
+        android:textSize="19sp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorInputHint"
+        android:hint="@string/hint_title"/>
+
+    <Spinner
+        android:id="@+id/notePlaceDropdown"
+        android:layout_width="match_parent"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:layout_height="64dp"
+        android:popupBackground="@drawable/bottom_sheet_modal_background"
+        android:background="@drawable/list_item_background_bottom_stroke"/>
+
+    <EditText
+        android:id="@+id/newNoteContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:paddingTop="18dp"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:background="@drawable/list_item_background_bottom_stroke"
+        android:inputType="textCapSentences|textMultiLine"
+        android:minHeight="64dp"
+        android:fontFamily="@font/pier_sans_regular"
+        android:textSize="19sp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorInputHint"
+        android:hint="@string/hint_note_content"/>
+
+</LinearLayout>

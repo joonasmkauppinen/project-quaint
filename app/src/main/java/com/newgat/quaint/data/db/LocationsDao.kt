@@ -14,4 +14,10 @@ interface LocationsDao {
 
     @Query("select * from user_locations")
     fun getAllLocations(): LiveData<List<UserLocationEntry>>
+
+    @Query("select name from user_locations")
+    fun getAllLocationNames(): List<String>
+
+    @Query("select id from user_locations where user_locations.name = :locationName")
+    fun getIdForLocation(locationName: String): Int
 }

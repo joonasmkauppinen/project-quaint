@@ -9,4 +9,7 @@ class NewActionViewModel(
     fun saveUserPlace() {
         repository.insertLocation()
     }
+    fun saveUserNote() {
+        repository.insertNote()
+    }
 }

@@ -47,6 +47,15 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
                 locationsTv.text = it.toString()
             }
         })
+
+        val notes = viewModel.notes.await()
+        notes.observe(this@LocationsSectionFragment, Observer {
+            if (it.isEmpty()) {
+                notesTv.text = "No notes added"
+            } else {
+                notesTv.text = it.toString()
+            }
+        })
     }
 
 }

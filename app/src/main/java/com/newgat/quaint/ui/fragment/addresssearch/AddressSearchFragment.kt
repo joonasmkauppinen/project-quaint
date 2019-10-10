@@ -99,7 +99,6 @@ class AddressSearchFragment : ScopedFragment(),
 
     override fun onDestroy() {
         super.onDestroy()
-        // TODO: implement search clean up
         viewModel.clearAddressPredictionList()
     }
 

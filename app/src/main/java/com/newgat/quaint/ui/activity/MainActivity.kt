@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModal
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.rootLayout, LocationsSectionFragment())
-                .commitNow()
+                .commit()
         }
 
         // TODO: Move logic into PermissionsProvider
