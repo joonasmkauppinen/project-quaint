@@ -13,6 +13,7 @@ import com.newgat.quaint.data.db.entity.UserLocationEntry
 )
 abstract class QuaintDatabase : RoomDatabase() {
     abstract fun locationsDao(): LocationsDao
+    abstract fun notesDao(): NotesDao
 
     // Create database singleton
     companion object {
