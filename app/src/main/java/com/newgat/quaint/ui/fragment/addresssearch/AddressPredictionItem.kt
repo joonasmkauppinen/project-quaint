@@ -13,8 +13,10 @@ class AddressPredictionItem(
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
-            addressPredictionTextView.text = prediction.description
-            fillPredictionButton.setOnClickListener{ listener.onFillClicked(prediction.description) }
+            val mainText = prediction.structured_formatting.main_text
+            addressMainText.text = mainText
+            addressSecondaryText.text = prediction.structured_formatting.secondary_text
+            fillPredictionButton.setOnClickListener{ listener.onFillClicked(mainText) }
             predictionItem.setOnClickListener{ listener.onItemPredictionClicked(prediction) }
         }
     }
