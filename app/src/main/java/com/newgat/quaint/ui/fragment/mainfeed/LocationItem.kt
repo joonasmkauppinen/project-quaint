@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.main_feed_list_item.*
 
 
 class LocationItem(
-    private val userLocationEntry: UserLocationEntry
+    val userLocationEntry: UserLocationEntry
 ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {

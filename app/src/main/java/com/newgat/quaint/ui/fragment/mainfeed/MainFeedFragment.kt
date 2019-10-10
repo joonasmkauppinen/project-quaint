@@ -16,6 +16,7 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.main_feed_fragment.*
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.support.v4.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -60,11 +61,11 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
 
     private fun initRecyclerView() {
         locationsSection = Section().apply {
-            setHeader(SectionHeader(getString(R.string.feed_header_locations)))
+            setHeader(SectionHeader(getString(R.string.feed_header_locations), false))
         }
 
         notesSection = Section().apply {
-            setHeader(SectionHeader(getString(R.string.feed_header_notes)))
+            setHeader(SectionHeader(getString(R.string.feed_header_notes), false))
         }
 
         paddingSection = Section().apply {
@@ -75,6 +76,13 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
             add(locationsSection)
             add(notesSection)
             add(paddingSection)
+            setOnItemClickListener { item, view ->
+                when (item) {
+                    (item as? NoteItem) -> openNoteDetails(item)
+                    (item as? LocationItem) -> openLocationDetails(item)
+                    (item as? SectionHeader) -> openListView(item)
+                }
+            }
         }
 
         mainFeedRecyclerView.apply {
@@ -83,8 +91,28 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
         }
     }
 
+    private fun openNoteDetails(item: NoteItem) {
+        toast("${item.userNoteEntry.title}")
+    }
+
+    private fun openLocationDetails(item: LocationItem) {
+        toast(item.userLocationEntry.name)
+    }
+
+    private fun openListView(item: SectionHeader) {
+        when (item.headerName) {
+            getString(R.string.feed_header_locations) -> toast("All Locations")
+            getString(R.string.feed_header_notes) -> toast("All Notes")
+        }
+    }
+
     private fun updateLocationsSection(items: List<UserLocationEntry>) {
-        locationsSection.update(items.toLocationItems())
+        if (items.size > 3) {
+            locationsSection.update(items.take(3).toLocationItems())
+            locationsSection.setHeader(SectionHeader(getString(R.string.feed_header_locations), true))
+        } else {
+            locationsSection.update(items.toLocationItems())
+        }
     }
 
     private fun List<UserLocationEntry>.toLocationItems() : List<LocationItem> {
@@ -94,7 +122,13 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun updateNotesSection(items: List<UserNoteEntry>) {
-        notesSection.update(items.toNoteItems())
+        if (items.size > 3) {
+            notesSection.update(items.take(3).toNoteItems())
+            notesSection.setHeader(SectionHeader(getString(R.string.feed_header_notes), true))
+        } else {
+            notesSection.update(items.toNoteItems())
+        }
+
     }
 
     private fun List<UserNoteEntry>.toNoteItems() : List<NoteItem> {

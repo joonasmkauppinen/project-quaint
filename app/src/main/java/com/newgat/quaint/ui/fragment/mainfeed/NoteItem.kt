@@ -7,7 +7,7 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.main_feed_list_item.*
 
 class NoteItem(
-    private val userNoteEntry: UserNoteEntry
+    val userNoteEntry: UserNoteEntry
 ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
