@@ -1,30 +1,52 @@
 package com.newgat.quaint.ui.fragment.bottomsheetmodal
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.content.Context
+import android.os.Handler
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 import com.newgat.quaint.R
+import com.newgat.quaint.internal.ActionType
+import kotlinx.android.synthetic.main.bottom_sheet_modal_fragment.*
+import kotlinx.android.synthetic.main.bottom_sheet_modal_fragment.view.*
+import java.lang.ClassCastException
+import kotlin.concurrent.thread
 
-class BottomSheetModalFragment : BottomSheetDialogFragment() {
+class BottomSheetModalFragment : BottomSheetDialogFragment(), View.OnClickListener {
 
-    private lateinit var viewModel: BottomSheetModalViewModel
+    private lateinit var listener: BottomSheetListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = context as BottomSheetListener
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$context must implement BottomSheetListener")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.bottom_sheet_modal_fragment, container, false)
+        val view = inflater.inflate(R.layout.bottom_sheet_modal_fragment, container, false)
+        view.listItemNote.setOnClickListener(this)
+        view.listItemLocation.setOnClickListener(this)
+        return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(BottomSheetModalViewModel::class.java)
-        // TODO: Use the ViewModel
+    interface BottomSheetListener {
+        fun onActionClicked(action: ActionType)
     }
 
+    override fun onClick(v: View?) {
+        when (v) {
+            listItemNote -> listener.onActionClicked(ActionType.NOTE)
+            listItemLocation -> listener.onActionClicked(ActionType.LOCATION)
+        }
+        Handler().postDelayed({dismiss()}, 300)
+    }
 }

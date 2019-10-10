@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.newgat.quaint.data.repository.QuaintRepository
 
 class LocationsSectionViewModelFactory(
-    private val quaintRepository: QuaintRepository
+    private val repository: QuaintRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LocationsSectionViewModel(quaintRepository) as T
+        return LocationsSectionViewModel(repository) as T
     }
 }

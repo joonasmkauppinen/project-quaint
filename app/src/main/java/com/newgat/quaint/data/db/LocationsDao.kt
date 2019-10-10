@@ -5,13 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 
 @Dao
 interface LocationsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(locationEntry: LocationEntry)
+    fun insert(userLocationEntry: UserLocationEntry)
 
-    @Query("select * from locations")
-    fun getAllLocations(): LiveData<List<LocationEntry>>
+    @Query("select * from user_locations")
+    fun getAllLocations(): LiveData<List<UserLocationEntry>>
 }

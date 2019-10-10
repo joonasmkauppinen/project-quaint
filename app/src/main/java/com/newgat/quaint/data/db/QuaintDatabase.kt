@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.newgat.quaint.data.db.entity.LocationEntry
+import com.newgat.quaint.data.db.entity.UserLocationEntry
 
 @Database(
-    entities = [LocationEntry::class],
-    version = 1
+    entities = [UserLocationEntry::class],
+    version = 3,
+    exportSchema = true
 )
 abstract class QuaintDatabase : RoomDatabase() {
     abstract fun locationsDao(): LocationsDao
@@ -26,6 +27,7 @@ abstract class QuaintDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 QuaintDatabase::class.java, "quaint.db")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

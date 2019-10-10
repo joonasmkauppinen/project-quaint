@@ -3,5 +3,18 @@
     <string name="title_activity_maps">Map</string>
     <string name="location_title">LOCATION</string>
     <string name="note_title">NOTE</string>
+    <string name="new_note_title">New Note</string>
+    <string name="new_location_title">New Location</string>
     <string name="create_new_title">Create New</string>
+    <string name="description_close_view">Close view</string>
+    <string name="button_save">save</string>
+    <string name="input_hint_name">Name</string>
+    <string name="input_hint_address">Address</string>
+    <string name="button_clear">clear</string>
+    <string name="input_hint_enter_address">Enter address</string>
+    <string name="content_description_location_pin_icon">Location pin icon.</string>
+    <string name="content_description_name_tag_icon">Name tag icon.</string>
+    <string name="choose_on_map">Choose on map</string>
+    <string name="content_description_map_icon">Map icon</string>
+    <string name="content_description_powered_by_google_logo">Powered by Google logo</string>
 </resources>

@@ -8,53 +8,17 @@
     android:background="@android:color/black"
     tools:context=".ui.fragment.locationssection.LocationsSectionFragment">
 
-    <EditText
-        android:id="@+id/nameEt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Location name"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/descriptoinEt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Location description"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/nameEt"
-        app:layout_constraintStart_toStartOf="@+id/nameEt"
-        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
-
-    <Button
-        android:id="@+id/addLocationBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="+ Add Location"
-        app:layout_constraintEnd_toEndOf="@+id/descriptoinEt"
-        app:layout_constraintStart_toStartOf="@+id/descriptoinEt"
-        app:layout_constraintTop_toBottomOf="@+id/descriptoinEt" />
-
     <TextView
         android:id="@+id/locationsTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Locations Section"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/addLocationBtn"
-        app:layout_constraintStart_toStartOf="@+id/addLocationBtn"
-        app:layout_constraintTop_toBottomOf="@+id/addLocationBtn" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
