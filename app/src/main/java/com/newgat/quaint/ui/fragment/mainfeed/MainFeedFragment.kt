@@ -25,6 +25,7 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     private val viewModelFactory: MainFeedViewModelFactory by instance()
 
     private lateinit var locationsSection: Section
+    private lateinit var notesSection: Section
     private lateinit var viewModel: MainFeedViewModel
 
     override fun onCreateView(
@@ -57,11 +58,16 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
 
     private fun initRecyclerView() {
         locationsSection = Section().apply {
-            setHeader(LocationHeader())
+            setHeader(SectionHeader(getString(R.string.feed_header_locations)))
+        }
+
+        notesSection = Section().apply {
+            setHeader(SectionHeader(getString(R.string.feed_header_notes)))
         }
 
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             add(locationsSection)
+            add(notesSection)
         }
 
         mainFeedRecyclerView.apply {
@@ -71,10 +77,10 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun updateLocationsSection(items: List<UserLocationEntry>) {
-        locationsSection.update(items.toAddressPredictionItems())
+        locationsSection.update(items.toLocationItems())
     }
 
-    private fun List<UserLocationEntry>.toAddressPredictionItems() : List<LocationItem> {
+    private fun List<UserLocationEntry>.toLocationItems() : List<LocationItem> {
         return this.map {
            LocationItem(it)
         }
