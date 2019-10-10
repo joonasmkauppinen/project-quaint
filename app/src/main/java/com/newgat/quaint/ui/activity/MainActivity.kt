@@ -8,12 +8,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import com.newgat.quaint.R
 import com.newgat.quaint.internal.ActionType
 import com.newgat.quaint.ui.fragment.bottomsheetmodal.BottomSheetModalFragment
-import com.newgat.quaint.ui.fragment.locationssection.LocationsSectionFragment
-import com.newgat.quaint.ui.fragment.map.MapFragment
+import com.newgat.quaint.ui.fragment.mainfeed.MainFeedFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_ACTION_TYPE = "com.newgat.quaint.ACTION_TYPE"
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModal
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.rootLayout, LocationsSectionFragment())
+                .replace(R.id.rootLayout, MainFeedFragment())
                 .commit()
         }
 

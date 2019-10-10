@@ -1,4 +1,4 @@
-package com.newgat.quaint.ui.fragment.locationssection
+package com.newgat.quaint.ui.fragment.mainfeed
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
-import com.newgat.quaint.data.db.entity.UserLocationEntry
 import com.newgat.quaint.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.locations_section_fragment.*
 import kotlinx.coroutines.launch
@@ -15,12 +14,12 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class LocationsSectionFragment : ScopedFragment(), KodeinAware {
+class MainFeedFragment : ScopedFragment(), KodeinAware {
 
     override val kodein by closestKodein()
-    private val viewModelFactory: LocationsSectionViewModelFactory by instance()
+    private val viewModelFactory: MainFeedViewModelFactory by instance()
 
-    private lateinit var viewModel: LocationsSectionViewModel
+    private lateinit var viewModel: MainFeedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +31,14 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(LocationsSectionViewModel::class.java)
+            .get(MainFeedViewModel::class.java)
 
         bindUI()
     }
 
     private fun bindUI() = launch {
         val locations = viewModel.locations.await()
-        locations.observe(this@LocationsSectionFragment, Observer {
+        locations.observe(this@MainFeedFragment, Observer {
             if (it.isEmpty()) {
                 locationsTv.text = "No Locations added"
                 return@Observer
@@ -49,7 +48,7 @@ class LocationsSectionFragment : ScopedFragment(), KodeinAware {
         })
 
         val notes = viewModel.notes.await()
-        notes.observe(this@LocationsSectionFragment, Observer {
+        notes.observe(this@MainFeedFragment, Observer {
             if (it.isEmpty()) {
                 notesTv.text = "No notes added"
             } else {

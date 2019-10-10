@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/black"
-    tools:context=".ui.fragment.locationssection.LocationsSectionFragment">
+    tools:context=".ui.fragment.mainfeed.MainFeedFragment">
 
     <TextView
         android:id="@+id/locationsTv"
