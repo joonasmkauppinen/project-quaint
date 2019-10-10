@@ -16,4 +16,5 @@
     <string name="content_description_name_tag_icon">Name tag icon.</string>
     <string name="choose_on_map">Choose on map</string>
     <string name="content_description_map_icon">Map icon</string>
+    <string name="content_description_powered_by_google_logo">Powered by Google logo</string>
 </resources>
