@@ -20,4 +20,5 @@
     <string name="hint_title">Title</string>
     <string name="hint_note_content">Note content</string>
     <string name="hint_add_place">Add location (optional)</string>
+    <string name="content_description_quaint_logo">Quaint logo</string>
 </resources>

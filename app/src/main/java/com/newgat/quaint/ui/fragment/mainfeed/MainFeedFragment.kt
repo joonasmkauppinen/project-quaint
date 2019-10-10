@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.newgat.quaint.R
 import com.newgat.quaint.ui.base.ScopedFragment
-import kotlinx.android.synthetic.main.locations_section_fragment.*
+import kotlinx.android.synthetic.main.main_feed_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -25,7 +25,7 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.locations_section_fragment, container, false)
+        return inflater.inflate(R.layout.main_feed_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
