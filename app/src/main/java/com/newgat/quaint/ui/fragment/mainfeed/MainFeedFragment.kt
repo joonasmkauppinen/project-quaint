@@ -27,6 +27,7 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
 
     private lateinit var locationsSection: Section
     private lateinit var notesSection: Section
+    private lateinit var paddingSection: Section
     private lateinit var viewModel: MainFeedViewModel
 
     override fun onCreateView(
@@ -66,9 +67,14 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
             setHeader(SectionHeader(getString(R.string.feed_header_notes)))
         }
 
+        paddingSection = Section().apply {
+            setHeader(PaddingHeader())
+        }
+
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             add(locationsSection)
             add(notesSection)
+            add(paddingSection)
         }
 
         mainFeedRecyclerView.apply {
