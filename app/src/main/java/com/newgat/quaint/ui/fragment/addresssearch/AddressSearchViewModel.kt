@@ -18,4 +18,8 @@ class AddressSearchViewModel(
         repository.setNewCurrentSelectedAddress(prediction)
     }
 
+    fun clearAddressPredictionList() {
+        repository.clearCurrentPlacePredictions()
+    }
+
 }

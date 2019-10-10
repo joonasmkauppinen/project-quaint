@@ -44,6 +44,10 @@ class QuaintRepositoryImpl(
     override val currentSelectedAddress: LiveData<Prediction>
         get() = _currentSelectedAddress
 
+    override fun clearCurrentlySelectedAddress() {
+        _currentSelectedAddress.postValue(null)
+    }
+
     override fun setNewCurrentSelectedAddress(prediction: Prediction) {
         _currentSelectedAddress.postValue(prediction)
         GlobalScope.launch(Dispatchers.IO) {
@@ -55,6 +59,10 @@ class QuaintRepositoryImpl(
     private val _currentPlacePredictions = MutableLiveData<List<Prediction>>()
     override val currentPlacePredictions: LiveData<List<Prediction>>
         get() = _currentPlacePredictions
+
+    override fun clearCurrentPlacePredictions() {
+        _currentPlacePredictions.postValue(emptyList())
+    }
 
     override fun fetchPlacePredictionsForInput(input: String) {
         GlobalScope.launch(Dispatchers.IO) {

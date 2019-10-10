@@ -9,8 +9,10 @@ interface QuaintRepository {
     fun setCurrentPlaceNameInput(placeName: String)
     val currentSelectedAddress: LiveData<Prediction>
     fun setNewCurrentSelectedAddress(prediction: Prediction)
+    fun clearCurrentlySelectedAddress()
     val currentPlacePredictions: LiveData<List<Prediction>>
     fun fetchPlacePredictionsForInput(input: String)
+    fun clearCurrentPlacePredictions()
 
     // For locations section
     suspend fun getLocationsList(): LiveData<List<UserLocationEntry>>
