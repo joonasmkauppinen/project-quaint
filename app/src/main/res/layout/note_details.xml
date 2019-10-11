@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_background_bottom_stroke">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/closeNoteDetailsButton"
+            android:layout_width="78dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="@string/description_close_view"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center"
+            android:textSize="21sp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/view_title_note_details"
+            android:fontFamily="@font/pier_sans_medium"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noteDetailTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:background="@drawable/list_item_background_bottom_stroke"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/pier_sans_regular"
+        android:textSize="19sp"
+        tools:text="Note title"/>
+
+    <TextView
+        android:id="@+id/noteDetailLocaion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:background="@drawable/list_item_background_bottom_stroke"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/pier_sans_regular"
+        android:textSize="19sp"
+        tools:text="Location"/>
+
+    <TextView
+        android:id="@+id/noteDetailContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/pier_sans_regular"
+        android:textSize="19sp"
+        tools:text="Content"/>
+
+</LinearLayout>
