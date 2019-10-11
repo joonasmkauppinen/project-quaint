@@ -13,4 +13,8 @@ class MainFeedViewModel(
     val notes by lazyDeferred {
         repository.getNotesList()
     }
+
+    fun setSelectedNoteId(noteTitle: String) {
+        repository.setSelectedNote(noteTitle)
+    }
 }

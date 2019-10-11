@@ -1,5 +1,6 @@
 package com.newgat.quaint.ui.fragment.mainfeed
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,6 +31,19 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     private lateinit var notesSection: Section
     private lateinit var paddingSection: Section
     private lateinit var viewModel: MainFeedViewModel
+
+    private var listener: MainFeedClickListener? = null
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as MainFeedClickListener
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,7 +106,9 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun openNoteDetails(item: NoteItem) {
-        toast("${item.userNoteEntry.title}")
+        val noteTitle = item.userNoteEntry.title!!
+        viewModel.setSelectedNoteId(noteTitle)
+        listener?.openNoteDetails()
     }
 
     private fun openLocationDetails(item: LocationItem) {
@@ -135,6 +151,10 @@ class MainFeedFragment : ScopedFragment(), KodeinAware {
         return this.map {
             NoteItem(it)
         }
+    }
+
+    interface MainFeedClickListener {
+        fun openNoteDetails()
     }
 
 }

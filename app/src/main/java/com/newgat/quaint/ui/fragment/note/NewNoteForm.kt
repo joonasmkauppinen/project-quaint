@@ -40,7 +40,6 @@ class NewNoteForm : ScopedFragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(NewNoteFormViewModel::class.java)
-        // TODO: Use the ViewModel
 
         bindUI()
     }

@@ -114,6 +114,18 @@ class QuaintRepositoryImpl(
         }
     }
 
+    private var _currentSelectedNoteTitle: String = ""
+
+    override suspend fun getSelectedNoteDetails(): LiveData<List<UserNoteEntry>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext notesDao.getSingleNote(_currentSelectedNoteTitle)
+        }
+    }
+
+    override fun setSelectedNote(noteTitle: String) {
+        _currentSelectedNoteTitle = noteTitle
+    }
+
     override suspend fun getNotesList(): LiveData<List<UserNoteEntry>> {
         return withContext(Dispatchers.IO) {
             return@withContext notesDao.getAllNotes()

@@ -24,6 +24,8 @@ interface QuaintRepository {
     fun insertNote()
     suspend fun getNotesForLocation(locationId: Int): LiveData<List<UserNoteEntry>>
     suspend fun getNotesList(): LiveData<List<UserNoteEntry>>
+    suspend fun getSelectedNoteDetails(): LiveData<List<UserNoteEntry>>
+    fun setSelectedNote(noteTitle: String)
     fun setNewCurrentNewNoteTitle(title: String)
     fun setNewCurrentNewNoteLocationName(name: String)
     fun setNewCurrentNewNoteContent(content: String)

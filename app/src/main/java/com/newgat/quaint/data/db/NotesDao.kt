@@ -17,4 +17,7 @@ interface NotesDao {
 
     @Query("select * from user_notes")
     fun getAllNotes(): LiveData<List<UserNoteEntry>>
+
+    @Query("select * from user_notes where title = :noteTitle")
+    fun getSingleNote(noteTitle: String): LiveData<List<UserNoteEntry>>
 }

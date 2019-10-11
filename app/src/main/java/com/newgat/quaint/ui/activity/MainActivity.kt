@@ -12,11 +12,13 @@ import com.newgat.quaint.R
 import com.newgat.quaint.internal.ActionType
 import com.newgat.quaint.ui.fragment.bottomsheetmodal.BottomSheetModalFragment
 import com.newgat.quaint.ui.fragment.mainfeed.MainFeedFragment
+import com.newgat.quaint.ui.fragment.notedetails.NoteDetailsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_ACTION_TYPE = "com.newgat.quaint.ACTION_TYPE"
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModalFragment.BottomSheetListener {
+class MainActivity : AppCompatActivity(),
+    View.OnClickListener, BottomSheetModalFragment.BottomSheetListener, MainFeedFragment.MainFeedClickListener {
 
     companion object {
         const val APP_PERMISSIONS_ACCESS_FINE_LOCATION = 1
@@ -47,5 +49,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomSheetModal
             putExtra(EXTRA_ACTION_TYPE, action)
         }
         startActivity(intent)
+    }
+
+    override fun openNoteDetails() {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_bottom_enter, R.anim.slide_bottom_exit, R.anim.slide_bottom_enter, R.anim.slide_bottom_exit)
+            .add(R.id.rootLayout, NoteDetailsFragment())
+            .addToBackStack(null)
+            .commit()
     }
 }
