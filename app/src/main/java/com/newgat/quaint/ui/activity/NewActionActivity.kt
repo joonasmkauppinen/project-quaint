@@ -8,13 +8,15 @@ import com.newgat.quaint.R
 import com.newgat.quaint.internal.ActionType
 import com.newgat.quaint.ui.fragment.addresssearch.AddressSearchFragment
 import com.newgat.quaint.ui.fragment.location.NewLocationForm
+import com.newgat.quaint.ui.fragment.map.MapFragment
 import com.newgat.quaint.ui.fragment.note.NewNoteForm
 import kotlinx.android.synthetic.main.activity_new_action.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 
-class NewActionActivity : AppCompatActivity(), KodeinAware, NewLocationForm.NewLocationFormListener {
+class NewActionActivity : AppCompatActivity(),
+    KodeinAware, NewLocationForm.NewLocationFormListener, AddressSearchFragment.OpenMapClickListener {
 
     override val kodein by closestKodein()
     private val viewModelFactory: NewActionViewModelFactory by instance()
@@ -72,6 +74,14 @@ class NewActionActivity : AppCompatActivity(), KodeinAware, NewLocationForm.NewL
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.slide_bottom_enter, R.anim.slide_bottom_exit, R.anim.slide_bottom_enter, R.anim.slide_bottom_exit)
             .add(R.id.newActionRoot, AddressSearchFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun openMapView() {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_bottom_enter, R.anim.slide_bottom_exit, R.anim.slide_bottom_enter, R.anim.slide_bottom_exit)
+            .add(R.id.newActionRoot, MapFragment())
             .addToBackStack(null)
             .commit()
     }

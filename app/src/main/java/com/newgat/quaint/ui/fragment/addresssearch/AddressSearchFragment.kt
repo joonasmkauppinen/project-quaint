@@ -1,6 +1,7 @@
 package com.newgat.quaint.ui.fragment.addresssearch
 
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,18 @@ class AddressSearchFragment : ScopedFragment(),
     private lateinit var rootView: View
     private lateinit var addressPredictionsSection: Section
 
+    private var listener: OpenMapClickListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as OpenMapClickListener
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +61,11 @@ class AddressSearchFragment : ScopedFragment(),
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(AddressSearchViewModel::class.java)
         bindUI()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        showKeyboard()
     }
 
     private fun bindUI() {
@@ -64,7 +82,6 @@ class AddressSearchFragment : ScopedFragment(),
             viewModel.onEditTextChange(text.toString())
         }
         rootView.addressInputEditText.requestFocus()
-        showKeyboard()
         updateClearButton("")
     }
 
@@ -82,7 +99,7 @@ class AddressSearchFragment : ScopedFragment(),
             add(addressPredictionsSection)
             setOnItemClickListener { item, view ->
                 when (view) {
-                    chooseOnMapItem -> toast("TODO: open map")
+                    chooseOnMapItem -> openMap()
                 }
             }
         }
@@ -91,6 +108,11 @@ class AddressSearchFragment : ScopedFragment(),
             layoutManager = LinearLayoutManager(this@AddressSearchFragment.context)
             adapter = groupAdapter
         }
+    }
+
+    private fun openMap() {
+        hideKeyboard()
+        listener?.openMapView()
     }
 
     private fun updateRecyclerViewItems(items: List<AddressPredictionItem>) {
@@ -156,5 +178,9 @@ class AddressSearchFragment : ScopedFragment(),
     private fun updateClearButton(text: CharSequence) {
         val value = text.toString()
         if (value != "") enableButton() else disableButton()
+    }
+
+    interface OpenMapClickListener {
+        fun openMapView()
     }
 }

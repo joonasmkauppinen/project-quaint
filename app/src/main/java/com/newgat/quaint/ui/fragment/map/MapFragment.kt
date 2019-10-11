@@ -20,11 +20,10 @@ import com.newgat.quaint.R
 import kotlinx.android.synthetic.main.fragment_map.view.*
 
 
-class MapFragment : Fragment(), OnMapReadyCallback, View.OnClickListener {
+class MapFragment : Fragment(), OnMapReadyCallback {
 
     private val TAG = "MapFragment"
 
-    private var listener: OnFragmentInteractionListener? = null
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var map: GoogleMap
 
@@ -32,10 +31,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_map, container, false)
-        view.closeMapBtn.setOnClickListener(this)
-        return view
+        return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
     override fun onStart() {
@@ -69,29 +65,4 @@ class MapFragment : Fragment(), OnMapReadyCallback, View.OnClickListener {
         }
     }
 
-    override fun onClick(v: View?) {
-        listener?.onFragmentInteraction()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    interface OnFragmentInteractionListener {
-        fun onFragmentInteraction()
-    }
-
-    companion object {
-        fun newInstance() = MapFragment()
-    }
 }
